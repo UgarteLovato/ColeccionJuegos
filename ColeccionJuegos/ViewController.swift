@@ -44,5 +44,14 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return juegos.count
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let juego = juegos[indexPath.row]
+        performSegue(withIdentifier: "juegoSegue", sender: juego)
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender:Any?){
+        let siguenteVC = segue.destination as! JuegoViewController
+        siguenteVC.juego = sender as? Juego
+    }
 }
 
